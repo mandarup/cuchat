@@ -1,21 +1,25 @@
+
+
+
 import os
 import uuid
 from flask import Flask
 from flask import Blueprint
 from flask_wtf.csrf import CSRFError, CSRFProtect
-
-
-
 from flask_socketio import SocketIO
+from flask_login import LoginManager
+from flask_session import Session
+
 
 
 socketio = SocketIO()
 csrf = CSRFProtect()
+login_manager = LoginManager()
+sess = Session()
 
-# blackchat_bp = Blueprint('blackchat', __name__)
+# custom imports
 from blackchat.views import bp as blackchat_bp
 from blackchat import events
-
 
 
 def create_app(debug=False):
@@ -67,5 +71,7 @@ def create_app(debug=False):
 
     socketio.init_app(app)
     csrf.init_app(app)
+    login_manager.init_app(app)
+    sess.init_app(app)
 
     return app
