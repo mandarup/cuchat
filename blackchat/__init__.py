@@ -1,27 +1,37 @@
 import os
+import uuid
 from flask import Flask
 from flask import Blueprint
+from flask_wtf.csrf import CSRFError, CSRFProtect
 
-
-app = Flask(__name__)
-app.config.from_object('blackchat.default_settings')
-app.config.from_envvar('BLACKCHAT_SETTINGS')
 
 
 from flask_socketio import SocketIO
 
 
 socketio = SocketIO()
+csrf = CSRFProtect()
 
 # blackchat_bp = Blueprint('blackchat', __name__)
 from blackchat.views import bp as blackchat_bp
 from blackchat import events
 
+
+
 def create_app(debug=False):
     """Create an application."""
+
+    SECRET_KEY = str(uuid.uuid4())
+    WTF_CSRF_SESSION_KEY = str(uuid.uuid4())
+
     app = Flask(__name__)
+    app.config.from_object('blackchat.default_settings')
+    app.config.from_envvar('BLACKCHAT_SETTINGS')
+
     app.debug = debug
-    app.config['SECRET_KEY'] = 'gjr39dkjn344_!67#'
+    app.config['SECRET_KEY'] = SECRET_KEY
+    app.config['WTF_CSRF_SESSION_KEY'] = WTF_CSRF_SESSION_KEY
+
 
     if not app.debug:
         import logging
@@ -32,7 +42,30 @@ def create_app(debug=False):
         file_handler.setFormatter(logging.Formatter('<%(asctime)s> <%(levelname)s> %(message)s'))
         app.logger.addHandler(file_handler)
 
+    @app.context_processor
+    def utility_functions():
+        def print_in_console(message):
+            print(str(message))
+
+        return dict(mdebug=print_in_console)
+
+
+    @app.errorhandler(404)
+    def not_found(error):
+        return render_template('404.html'), 404
+
+    @app.errorhandler(500)
+    def not_found(error):
+        return render_template('500.html'), 500
+
+    @app.errorhandler(CSRFError)
+    def handle_csrf_error(e):
+        app.logger.error(e.description)
+        return render_template('csrf_error.html', reason=e.description), 400
+
     app.register_blueprint(blackchat_bp)
 
     socketio.init_app(app)
+    csrf.init_app(app)
+
     return app
