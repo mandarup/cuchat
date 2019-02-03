@@ -22,17 +22,24 @@ from blackchat.views import bp as blackchat_bp
 from blackchat import events
 
 
-def create_app(debug=False):
+def create_app():
     """Create an application."""
 
     SECRET_KEY = str(uuid.uuid4())
     WTF_CSRF_SESSION_KEY = str(uuid.uuid4())
 
     app = Flask(__name__)
-    app.config.from_object('blackchat.default_settings')
+    app.config.from_object('blackchat.config.Default')
     # app.config.from_envvar('BLACKCHAT_SETTINGS')
 
-    app.debug = debug
+    if os.environ['ENV'] in ('prod', 'production'):
+        app.config.from_object('blackchat.config.Production')
+    elif os.environ['ENV'] in ('dev', 'development'):
+        app.config.from_object('blackchat.config.Development')
+    else:
+        app.logger.info('using default config')
+
+    app.logger.info('config: {}'.format(app.debug))
     app.config['SECRET_KEY'] = SECRET_KEY
     app.config['WTF_CSRF_SESSION_KEY'] = WTF_CSRF_SESSION_KEY
     app.secret_key = SECRET_KEY

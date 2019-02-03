@@ -2,7 +2,7 @@
 import blackchat
 from blackchat import socketio
 
-app = blackchat.create_app(debug=True)
+app = blackchat.create_app()
 
 if __name__ == '__main__':
     socketio.run(app)

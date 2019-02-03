@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "09885c8bb84d192ca6576a514b29bd5eec8759cc87162b068d9e08ed54279321"
+            "sha256": "16bb001a611d344dfea9511ff830280930219bb529e41eaa307ada9d9ceefb4f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,9 @@
         ]
     },
     "default": {
+        "blackchat": {
+            "path": "."
+        },
         "click": {
             "hashes": [
                 "sha256:2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13",
