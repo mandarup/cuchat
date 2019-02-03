@@ -3,7 +3,7 @@ eventlet>=0.17.4
 flask>=0.12.3
 flask-socketio
 Flask-WTF>=0.9.5
-greenlet==0.4.2
+greenlet>=0.4.2
 itsdangerous>=0.24
 Jinja2>=2.8
 MarkupSafe>=0.23
