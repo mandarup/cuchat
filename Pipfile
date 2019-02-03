@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+click = ">=6.6"
+eventlet = ">=0.17.4"
+greenlet = ">=0.4.2"
+itsdangerous = ">=0.24"
+gunicorn = "*"
+Flask = ">=0.12.3"
+Flask-SocketIO = "*"
+Flask-WTF = ">=0.9.5"
+Jinja2 = ">=2.8"
+MarkupSafe = ">=0.23"
+Werkzeug = ">=0.11.10"
+WTForms = ">=1.0.5"
+Flask-Session = "*"
+Flask-Login = "*"
+
+[requires]
+python_version = "3.6"
