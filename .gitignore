@@ -4,3 +4,6 @@ venv/
 dist/
 settings.cfg
 *.log*
+.env
+__pycache__/
+instance/
