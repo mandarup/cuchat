@@ -30,7 +30,7 @@ def create_app(debug=False):
 
     app = Flask(__name__)
     app.config.from_object('blackchat.default_settings')
-    app.config.from_envvar('BLACKCHAT_SETTINGS')
+    # app.config.from_envvar('BLACKCHAT_SETTINGS')
 
     app.debug = debug
     app.config['SECRET_KEY'] = SECRET_KEY
