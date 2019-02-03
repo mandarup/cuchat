@@ -35,7 +35,10 @@ def create_app(debug=False):
     app.debug = debug
     app.config['SECRET_KEY'] = SECRET_KEY
     app.config['WTF_CSRF_SESSION_KEY'] = WTF_CSRF_SESSION_KEY
+    app.secret_key = SECRET_KEY
 
+    # NOTE: SESSION_TYPE defaults to null which does not work if using flask-session
+    app.config['SESSION_TYPE'] = 'filesystem'
 
     if not app.debug:
         import logging
