@@ -1,1 +1,1 @@
-web: gunicorn run:socketio --log-file -
+web: python run.py
