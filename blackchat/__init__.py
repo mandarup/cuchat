@@ -29,7 +29,7 @@ def create_app():
     app = Flask(__name__)
 
     SECRET_KEY = str(uuid.uuid4())
-    WTF_CSRF_SESSION_KEY = str(uuid.uuid4())
+    # WTF_CSRF_SESSION_KEY = str(uuid.uuid4())
 
 
     app.config.from_object('blackchat.config.DefaultConfig')
@@ -48,7 +48,7 @@ def create_app():
 
     app.logger.info('config: {}'.format(app.debug))
     app.config['SECRET_KEY'] = SECRET_KEY
-    app.config['WTF_CSRF_SESSION_KEY'] = WTF_CSRF_SESSION_KEY
+    # app.config['WTF_CSRF_SESSION_KEY'] = WTF_CSRF_SESSION_KEY
     app.secret_key = SECRET_KEY
 
     # NOTE: SESSION_TYPE defaults to null which does not work if using flask-session

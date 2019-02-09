@@ -21,8 +21,8 @@ Werkzeug = ">=0.11.10"
 WTForms = ">=1.0.5"
 Flask-Session = "*"
 Flask-Login = "*"
-uwsgi = ">=2.0.18"
-flask_sslify = "*"
+uWSGI = ">=2.0.18"
+Flask-SSLify = "*"
 
 [requires]
 python_version = "3.6"
