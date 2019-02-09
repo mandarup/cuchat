@@ -12,15 +12,16 @@ from flask_login import LoginManager
 from flask_session import Session
 
 
-
 socketio = SocketIO()
 csrf = CSRFProtect()
 login_manager = LoginManager()
 sess = Session()
 
+
 # custom imports
 from blackchat.views import bp as blackchat_bp
 from blackchat import events
+
 
 
 def create_app():
@@ -69,6 +70,7 @@ def create_app():
         return dict(mdebug=print_in_console)
 
     app.register_blueprint(blackchat_bp)
+
 
     socketio.init_app(app)
     csrf.init_app(app)
