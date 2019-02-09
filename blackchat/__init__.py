@@ -5,6 +5,7 @@ import os
 import uuid
 from flask import Flask
 from flask import Blueprint
+from flask import render_template
 from flask_wtf.csrf import CSRFError, CSRFProtect
 from flask_socketio import SocketIO
 from flask_login import LoginManager
@@ -63,6 +64,12 @@ def create_app():
 
         return dict(mdebug=print_in_console)
 
+    app.register_blueprint(blackchat_bp)
+
+    socketio.init_app(app)
+    csrf.init_app(app)
+    login_manager.init_app(app)
+    sess.init_app(app)
 
     @app.errorhandler(404)
     def not_found(error):
@@ -76,12 +83,5 @@ def create_app():
     def handle_csrf_error(e):
         app.logger.error(e.description)
         return render_template('csrf_error.html', reason=e.description), 400
-
-    app.register_blueprint(blackchat_bp)
-
-    socketio.init_app(app)
-    csrf.init_app(app)
-    login_manager.init_app(app)
-    sess.init_app(app)
 
     return app

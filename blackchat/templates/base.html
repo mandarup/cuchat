@@ -3,15 +3,14 @@
   <head>
     <meta charset="utf-8">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <meta name="description" content="An extendable Reddit clone built with flask by
-         Lucas Ou-Yang.">
-    <meta name="author" content="Lucas Ou-Yang">
-    <title>{% block title %}Reddit clone built with flask, python, nginx, etc{% endblock %}</title>
+    <meta name="description" content="Chat with Curiosity.">
+    <meta name="author" content="Curious Cat">
+    <title>{% block title %}Chat for curious minds{% endblock %}</title>
     <meta name="keywords" content="flask,reddit,python,reddit-clone,nginx,lucas ou-yang">
 
     <!-- Bootstrap core CSS -->
     <!-- <link href="css/bootstrap.css" rel="stylesheet"> -->
-    <link rel="icon" href="https://reddit.codelucas.com/static/imgs/favicon.ico" type="image/x-icon">
+    <!-- <link rel="icon" href="https://reddit.codelucas.com/static/imgs/favicon.ico" type="image/x-icon"> -->
     {% block css %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -36,44 +35,6 @@
             <span class="icon-bar"></span>
           </button>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav">
-              <li>
-                  <a class="brand-nav" href="/">
-                      {% if cur_subreddit is defined and cur_subreddit.id != 1 %}
-                          {{ cur_subreddit.name }}
-                      {% else %}
-                          {{ config.BRAND }}
-                      {% endif %}
-                  </a>
-              </li>
-              <li>
-                  <a href="/?trending=true">trending</a>
-              </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-          {% if user is not defined or user == None %}
-              <li><a href="{{ url_for('frontends.register', next=request.path) }}">Register</a></li>
-              <li><a href="{{ url_for('frontends.login', next=request.path) }}">Login</a></li>
-          {% else %}
-              <p class="navbar-text login-nav-text">logged in as
-                  <a href="{{ url_for('users.home_page', username=user.username) }}">
-                      {{ user.username }}</a>, &nbsp;
-                  {{ user.get_thread_karma() }} <span class="karma-star">★</span>
-              </p>
-              <li class="logout-button">
-                  {#
-                      <!-- <a href="{{ config.ROOT_URL }}/logout">logout</a> -->
-                   #}
-                  <a href="{{ url_for('frontends.logout', next=request.path) }}">logout</a>
-              </li>
-          {% endif %}
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container -->
-    </nav>
 
     <div class="container">
       <div id="messages-wrap">
@@ -136,6 +97,7 @@
       }
     });
     </script>
+
 
     {% endblock %}
   </body>

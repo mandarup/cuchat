@@ -1,4 +1,6 @@
-<html>
+{% extends "base.html" %}
+
+{% block content %}
     <head>
         <title>Black-Chat: {{ room }}</title>
         <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
@@ -43,4 +45,5 @@
         <input id="text" size="80" placeholder="Enter your message here"><br><br>
         <a href="#" onclick="leave_room();">Leave this room</a>
     </body>
-</html>
+
+{% endblock %}
