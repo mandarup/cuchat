@@ -9,10 +9,10 @@ app = blackchat.create_app()
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    # socketio.run(app, host='0.0.0.0', port=port)
+    socketio.run(app, host='0.0.0.0', port=port)
 
     # if os.environ['ENV'] in ('prod', 'production'):
     #     sslify = SSLify(app=app, subdomains=True)
     #     # sslify.init_app(app)
 
-    app.run( host='0.0.0.0', port=port)
+    # app.run( host='0.0.0.0', port=port)
