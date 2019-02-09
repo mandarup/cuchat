@@ -17,7 +17,6 @@ csrf = CSRFProtect()
 login_manager = LoginManager()
 sess = Session()
 
-
 # custom imports
 from blackchat.views import bp as blackchat_bp
 from blackchat import events
@@ -27,10 +26,12 @@ from blackchat import events
 def create_app():
     """Create an application."""
 
+    app = Flask(__name__)
+
     SECRET_KEY = str(uuid.uuid4())
     WTF_CSRF_SESSION_KEY = str(uuid.uuid4())
 
-    app = Flask(__name__)
+
     app.config.from_object('blackchat.config.DefaultConfig')
     # app.config.from_envvar('BLACKCHAT_SETTINGS')
 
@@ -53,6 +54,7 @@ def create_app():
     # NOTE: SESSION_TYPE defaults to null which does not work if using flask-session
     app.config['SESSION_TYPE'] = 'filesystem'
 
+
     if not app.debug:
         import logging
         from logging.handlers import TimedRotatingFileHandler
@@ -70,7 +72,6 @@ def create_app():
         return dict(mdebug=print_in_console)
 
     app.register_blueprint(blackchat_bp)
-
 
     socketio.init_app(app)
     csrf.init_app(app)

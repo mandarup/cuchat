@@ -13,6 +13,8 @@ def index():
     if form.validate_on_submit():
         session['name'] = form.name.data
         session['room'] = form.room.data
+        print('------ {0}'.format(request.form))
+        
         return redirect(url_for('.chat'))
     elif request.method == 'GET':
         form.name.data = session.get('name', '')
