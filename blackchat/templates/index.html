@@ -5,6 +5,7 @@
   <body>
       <h1>Black-Chat</h1>
       <form method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
           {{ form.hidden_tag() }}
           {{ form.name.label }}: {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
           {{ form.room.label }}: {{ form.room() }} {% for error in form.room.errors %}{{ error }}{% endfor %}<br>
