@@ -22,7 +22,7 @@ WTForms = ">=1.0.5"
 Flask-Session = "*"
 Flask-Login = "*"
 uwsgi = ">=2.0.18"
-
+flask_sslify = "*"
 
 [requires]
 python_version = "3.6"
