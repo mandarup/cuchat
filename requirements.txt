@@ -12,3 +12,4 @@ WTForms>=1.0.5
 gunicorn
 flask_session
 flask_login
+flask_sslify
