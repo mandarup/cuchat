@@ -21,7 +21,8 @@ Werkzeug = ">=0.11.10"
 WTForms = ">=1.0.5"
 Flask-Session = "*"
 Flask-Login = "*"
-blackchat = {path = "."}
+uwsgi = ">=2.0.18"
+
 
 [requires]
 python_version = "3.6"

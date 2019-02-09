@@ -7,15 +7,21 @@ class BaseConfig(object):
   WTF_CSRF_ENABLED = True
 
 
-class Default(BaseConfig):
+class DefaultConfig(BaseConfig):
     pass
 
 
-class Development(BaseConfig):
+class DevelopmentConfig(BaseConfig):
     DEBUG = True
     SESSION_COOKIE_SECURE = False
     WTF_CSRF_ENABLED = False
 
+class TestingConfig(BaseConfig):
+    pass
 
-class Production(BaseConfig):
+class StagingConfig(BaseConfig):
+    pass
+
+
+class ProductionConfig(BaseConfig):
     pass

@@ -30,13 +30,17 @@ def create_app():
     WTF_CSRF_SESSION_KEY = str(uuid.uuid4())
 
     app = Flask(__name__)
-    app.config.from_object('blackchat.config.Default')
+    app.config.from_object('blackchat.config.DefaultConfig')
     # app.config.from_envvar('BLACKCHAT_SETTINGS')
 
     if os.environ['ENV'] in ('prod', 'production'):
-        app.config.from_object('blackchat.config.Production')
+        app.config.from_object('blackchat.config.ProductionConfig')
     elif os.environ['ENV'] in ('dev', 'development'):
-        app.config.from_object('blackchat.config.Development')
+        app.config.from_object('blackchat.config.DevelopmentConfig')
+    elif os.environ['ENV'] in ('stage', 'staging'):
+        app.config.from_object('blackchat.config.StagingConfig')
+    elif os.environ['ENV'] in ('test', 'testing'):
+        app.config.from_object('blackchat.config.TestingConfig')
     else:
         app.logger.info('using default config')
 
